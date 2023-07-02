@@ -1,4 +1,6 @@
+import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
+import { HousingServiceService } from 'src/app/services/housing-service.service';
 
 @Component({
   selector: 'app-property-list',
@@ -7,43 +9,30 @@ import { Component } from '@angular/core';
 })
 export class PropertyListComponent {
 
-  Properties: Array<any> = [
-    {
-      "Id": 1,
-      "Name": "Birla House",
-      "Type": "House",
-      "Price": 120000
-    },
-    {
-      "Id": 2,
-      "Name": "Birla House 2",
-      "Type": "House 2",
-      "Price": 220000
-    },
-    {
-      "Id": 3,
-      "Name": "Birla House 3",
-      "Type": "House 3",
-      "Price": 130000
-    },
-    {
-      "Id": 4,
-      "Name": "Birla House 4",
-      "Type": "House 4",
-      "Price": 140000
-    },
-    {
-      "Id": 5,
-      "Name": "Birla House 5",
-      "Type": "House 5",
-      "Price": 150000
-    },
-    {
-      "Id": 6,
-      "Name": "Birla House 6",
-      "Type": "House 6",
-      "Price": 160000
-    }
-]
+  Properties: any;
+
+  /**
+   *
+   */
+  constructor(private housingService: HousingServiceService) {
+    
+    
+  }
+
+  ngOnInit(): void {
+    this.housingService.getProperties().subscribe(
+          data=>{
+            this.Properties = data;
+            console.log(data);
+          },
+          error =>{
+              console.log(error);
+          }
+          
+          );
+        // this.http.get('data/properties.json').subscribe(
+        //   data=>console.log(data)
+        //);
+  }
 
 }
