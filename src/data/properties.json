@@ -1,36 +1,47 @@
 [
     {
       "Id": 1,
+      "SellRent": 2,
       "Name": "Birla House",
       "Type": "House",
-      "Price": 120000
+      "Price": 120000,
+      "Image": "prp-1"
     },
     {
       "Id": 2,
+      "SellRent": 1,
       "Name": "Birla House 2",
       "Type": "House 2",
-      "Price": 220000
+      "Price": 220000,
+      "Image": "prp-2"
     },
     {
       "Id": 3,
+      "SellRent": 1,
       "Name": "Birla House 3",
       "Type": "House 3",
-      "Price": 130000
+      "Price": 130000,
+      "Image": "prp-3"
     },
     {
       "Id": 4,
+      "SellRent": 2,
       "Name": "Birla House 4",
       "Type": "House 4",
-      "Price": 140000
+      "Price": 140000,
+      "Image": "prp-4"
     },
     {
       "Id": 5,
+      "SellRent": 1,
       "Name": "Birla House 5",
       "Type": "House 5",
-      "Price": 150000
+      "Price": 150000,
+      "Image": "prp-5"
     },
     {
       "Id": 6,
+      "SellRent": 1,
       "Name": "Birla House 6",
       "Type": "House 6",
       "Price": 160000
