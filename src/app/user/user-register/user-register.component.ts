@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
+import { User } from 'src/app/model/user';
+import { UserService } from 'src/app/services/user.service';
+//import * as alertify from 'alertifyjs';
 
 @Component({
   selector: 'app-user-register',
@@ -9,8 +12,9 @@ import { AbstractControl, FormBuilder, FormControl, FormGroup, ValidationErrors,
 export class UserRegisterComponent implements OnInit {
 
   registerationForm!: FormGroup;
-
-  constructor(private fb: FormBuilder){}
+  user!: User;
+  userSubmited: boolean = false;
+  constructor(private fb: FormBuilder, private userService: UserService){}
 
   ngOnInit() {
   //   this.registerationForm = new FormGroup({
@@ -38,7 +42,45 @@ export class UserRegisterComponent implements OnInit {
 
     onSubmit() {
         console.log(this.registerationForm);
+        this.userSubmited = true;
+        if(this.registerationForm.valid)
+        {
+        //this.user = Object.assign(this.user, this.registerationForm.value);
+        //localStorage.setItem('Users', JSON.stringify(this.user));
+        //this.addUser(this.user);
+        this.userService.addUser(this.userData());
+        this.registerationForm.reset();
+        this.userSubmited=false;
+        //alertify.success('Congrats, Successfully registerd!');
+        }
+        // else{
+        //   alertify.error('UnSuccess Registration.');
+        // }
     }
+
+    userData(): User {
+      return this.user = {
+          userName: this.userName.value,
+          email: this.email.value,
+          password: this.password.value,
+          mobile: this.mobile.value
+      }
+    }
+
+    // addUser(user: any = {}){
+    //   let users = [];
+    //   if(localStorage?.getItem('Users'))
+    //   {
+    //     const storedUsers = localStorage.getItem('Users');
+    //     const parsedUsers = storedUsers ? JSON.parse(storedUsers) : null;
+    //     users = parsedUsers;
+    //     users = [user, ...users];
+    //   }
+    //   else{
+    //     users = [user];
+    //   }
+    //   localStorage.setItem('Users', JSON.stringify(this.user));
+    // }
 
     get userName(){
       return this.registerationForm
